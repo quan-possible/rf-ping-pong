@@ -5,10 +5,10 @@
 
 First, calculate your expected score of the match:
 
-$$\text{expected\_outcome} = \frac{1}{1 + 10^{(\text{opponent\_rating} - \text{your\_rating}) / 500}}$$
+$$\text{expected}\_\text{outcome} = \frac{1}{1 + 10^{(\text{opponent}\_\text{rating} - \text{your}\_\text{rating}) / 500}}$$
 
 Then, we can update your score based on the outcome as
-$$\text{new\_rating} = \lfloor\text{old\_rating} + 32 \times (\text{actual\_outcome} - \text{expected\_outcome})\rfloor,$$
+$$\text{new}\_\text{rating} = \lfloor\text{old}\_\text{rating} + 32 \times (\text{actual}\_\text{outcome} - \text{expected}\_\text{outcome})\rfloor,$$
 
 where
 
@@ -38,7 +38,7 @@ We use a numerical rating to represent the skill level of each player. The highe
 **Expected Outcome**
 Each player starts with an initial rating of 1000. Given a player and a opponent, to calculate new ratings after a game, we first need to calculate the expected outcome of the game:
 
-$$\text{expected\_outcome} = \frac{1}{1 + 10^{(\text{opponent\_rating} - \text{player\_rating}) / 500}}$$
+$$\text{expected}\_\text{outcome} = \frac{1}{1 + 10^{(\text{opponent}\_\text{rating} - \text{player}\_\text{rating}) / 500}}$$
 
 The expected outcome, ranges from 0 to 1, shows how likely the player wins against the opponent[^1]. The higher the player ratings, the higher the expected outcome.
 
