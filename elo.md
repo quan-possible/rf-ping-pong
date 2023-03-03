@@ -90,8 +90,8 @@ $$
 Given these quantities, we can finally calculate the new ratings, $R'_{\text{Bro}}$ and $R'_{\text{Ilon}}$, using the expected outcomes and actual outcomes vectors for the two players as
 
 $$
-R'_{\text{Bro}} = 1200 + 5 \times (1 + 0 + 1 + 1 + 0) \\+ 64\times \left((1 + 0 + 1 + 1 + 0) - 5\times 0.5714 \right) = 1224,\\
-R'_{\text{Bro}} = 1150 + 5 \times (0 + 1 + 0 + 0 + 1) \\+ 64\times \left((0 + 1 + 0 + 0 + 1) - 5\times 0.4285 \right) =  1150.
+R'_{\text{Bro}} = 1200 + 5 \times (1 + 0 + 1 + 1 + 0) \\ + 64\times \left((1 + 0 + 1 + 1 + 0) - 5\times 0.5714 \right) = 1224,\\
+R'_{\text{Bro}} = 1150 + 5 \times (0 + 1 + 0 + 0 + 1) \\ + 64\times \left((0 + 1 + 0 + 0 + 1) - 5\times 0.4285 \right) =  1150.
 $$
 
 ## Analysis

@@ -92,7 +92,7 @@ Suppose two players, Bro and Ilon with ratings <img src="https://latex.codecogs.
   
 Given these quantities, we can finally calculate the new ratings, <img src="https://latex.codecogs.com/gif.latex?R&#x27;_{&#x5C;text{Bro}}"/> and <img src="https://latex.codecogs.com/gif.latex?R&#x27;_{&#x5C;text{Ilon}}"/>, using the expected outcomes and actual outcomes vectors for the two players as
   
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?R&#x27;_{&#x5C;text{Bro}}%20=%201200%20+%205%20&#x5C;times%20(1%20+%200%20+%201%20+%201%20+%200)%20&#x5C;&#x5C;+%2064&#x5C;times%20&#x5C;left((1%20+%200%20+%201%20+%201%20+%200)%20-%205&#x5C;times%200.5714%20&#x5C;right)%20=%201224,&#x5C;&#x5C;R&#x27;_{&#x5C;text{Bro}}%20=%201150%20+%205%20&#x5C;times%20(0%20+%201%20+%200%20+%200%20+%201)%20&#x5C;&#x5C;+%2064&#x5C;times%20&#x5C;left((0%20+%201%20+%200%20+%200%20+%201)%20-%205&#x5C;times%200.4285%20&#x5C;right)%20=%20%201150."/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?R&#x27;_{&#x5C;text{Bro}}%20=%201200%20+%205%20&#x5C;times%20(1%20+%200%20+%201%20+%201%20+%200)%20&#x5C;&#x5C;%20+%2064&#x5C;times%20&#x5C;left((1%20+%200%20+%201%20+%201%20+%200)%20-%205&#x5C;times%200.5714%20&#x5C;right)%20=%201224,&#x5C;&#x5C;R&#x27;_{&#x5C;text{Bro}}%20=%201150%20+%205%20&#x5C;times%20(0%20+%201%20+%200%20+%200%20+%201)%20&#x5C;&#x5C;%20+%2064&#x5C;times%20&#x5C;left((0%20+%201%20+%200%20+%200%20+%201)%20-%205&#x5C;times%200.4285%20&#x5C;right)%20=%20%201150."/></p>  
   
   
 ##  Analysis
