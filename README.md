@@ -18,3 +18,6 @@ Participants are expected to conduct themselves in a sportsmanlike manner and fo
 
 #### Prizes
 It's the friends you make along the way.
+
+#### Season 2?
+To continually refresh the RF ping pong experience, a season should come out every two months, with updated rules and ELO ratings calculation scheme. All previous ranks and ELO will be reset.
