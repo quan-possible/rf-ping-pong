@@ -1,4 +1,5 @@
 # RF Ping Pong ELO
+
 *This is a pilot of the system. Rules are subjected to changes at short notice.*
 
 ## TL;DR
@@ -59,11 +60,11 @@ To provide a better sense of progression and achievement, we can associate diffe
 - Diamond: 2000+
 
 **Seasons**
-To continually refresh the game, we have season 
+To continually refresh the game, we have season
 
 **Ranking Tracking**
 
-1. Write your name on the board along with the starting rating (1000), if this is your first time. 
+1. Write your name on the board along with the starting rating (1000), if this is your first time.
 2. After you finished the match, calculate your new ratings follow the formula and write it next to your name.
 3. Write down your corresponding ranking.
 4. Go for another game!
@@ -71,6 +72,7 @@ To continually refresh the game, we have season
 ## Interpretations
 
 Denote $R$, $E$ as the ratings and expected out come of the match. Given player $A$ and $B$ with ratings $R_A$ and $R_B$, respectively, the expected outcome w.r.t. player $A$ is
+
 $$
 E_A = \frac{1}{1 + 10^{(R_B - R_A)/500}}
 $$
@@ -81,8 +83,7 @@ The value of $E_A \in (0,1)$ shows how likely the player A wins against the oppo
   <img src="/fig/elo.png" />
 </p>
 
-
-In addition, the expected outcome formulation is equivalent to 
+In addition, the expected outcome formulation is equivalent to
 
 $$
 E_A = \frac{Q_A}{Q_A + Q_B}
@@ -96,23 +97,5 @@ $$
 &R_B = 1000, R_A = 2000 \Rightarrow E_A = 10^2 \times E_B \approx 0.99\\
 \end{align*}
 $$
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 [^1]: One can notice that this is the [logistic function](https://en.wikipedia.org/wiki/Logistic_function) with base 10, $L=1$, $k=1/500$, and $x_0 = \text{opponent\_rating}$.
