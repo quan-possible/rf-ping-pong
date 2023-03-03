@@ -26,7 +26,7 @@ For multiple games $i$ played in a row, $\text{actual\_outcome}$ is a binary vec
 
 $$\text{new\_rating} = \lfloor\text{old\_rating} + \sum_i 5\times \text{actual\_outcome}_i \\+ 64 \times (\sum_i\text{actual\_outcome}_i - \sum_i\text{expected\_outcome}_i)\rfloor,$$
 
-Player starts with ELO ratings of 1000 (Bronze). The different ranks are
+Players start with a rating of 1000 (Bronze) and can progress to higher ranks based on their ratings:
 
 - Bronze: 1000-1199
 - Silver: 1200-1399
@@ -35,16 +35,16 @@ Player starts with ELO ratings of 1000 (Bronze). The different ranks are
 - Platinum II: 1800-1999
 - Diamond: 2000+
 
-**After finishing your game**, calculate your new ratings and put it on the ranking board, which should be seen easily in Random Forest.
+**To update your ranking**, calculate your new rating after each game and add it to the ranking board, which should be easily visible in the Random Forest room.
 
-GLHF! You can read the text below to understand the ranking calculation in detail.
+Good luck, and have fun! For more information on the ranking calculation, read on.
 
 ## Basics
 
-We use a numerical rating to represent the skill level of each player. The higher the rating, the better the player is assumed to be. When two players compete, their ratings are used to calculate the expected outcome of the game. The expected outcome is then compared to the actual outcome, and the ratings are adjusted accordingly.
+We use a numerical rating to represent the skill level of each player. The higher the rating, the better the player is assumed to be. When two players compete, their ratings are used to calculate the expected outcome of the game. The expected outcome is then compared to the actual outcome, and the ratings are adjusted accordingly. Each player starts with an initial rating of 1000.
 
 **Expected Outcome**
-Each player starts with an initial rating of 1000. Given a player and a opponent, to calculate new ratings after a game, we first need to calculate the expected outcome of the game:
+Given a player and a opponent, to calculate new ratings after a game, we first need to calculate the expected outcome of the game:
 
 $$\text{expected\_outcome} = \frac{1}{1 + 10^{(\text{opponent\_rating} - \text{player\_rating}) / 400}}$$
 
@@ -87,12 +87,20 @@ E_{\text{Bro}} = \frac{1}{1 + 10^{(1150 - 1200)/400}} \approx 0.5714, \\
 E_{\text{Ilon}} = \frac{1}{1 + 10^{(1200 - 1150)/400}} \approx 0.4285.
 $$
 
+
 Given these quantities, we can finally calculate the new ratings, $R'_{\text{Bro}}$ and $R'_{\text{Ilon}}$, using the expected outcomes and actual outcomes vectors for the two players as
 
 $$
 R'_{\text{Bro}} = 1200 + 5 \times (1 + 0 + 1 + 1 + 0) \\ + 64\times \left((1 + 0 + 1 + 1 + 0) - 5\times 0.5714 \right) = 1224,\\
 R'_{\text{Bro}} = 1150 + 5 \times (0 + 1 + 0 + 0 + 1) \\ + 64\times \left((0 + 1 + 0 + 0 + 1) - 5\times 0.4285 \right) =  1150.
 $$
+
+Based on their new ratings, Bro is now in the Silver rank (1200-1399), while Ilon remains in the Bronze rank (1000-1199). In summary,
+
+| Player | Old Rating | Games Played | Actual Outcome  | Expected Outcome               | Rating Change | New Rating |
+|--------|------------|--------------|-----------------|--------------------------------|---------------|------------|
+| Bro    | 1200       | 5            | [1, 0, 1, 1, 0] | [0.5714, 0.5714, 0.5714, 0.5714, 0.5714] | +24           | 1224       |
+| Ilon   | 1150       | 5            | [0, 1, 0, 0, 1] | [0.4285, 0.4285, 0.4285, 0.4285, 0.4285] | +0           | 1150       |
 
 ## Analysis
 
@@ -134,7 +142,7 @@ How do the rating gains for U differ for different $R_U$? Assume U wins in a gam
   <img src="/assets/rating_gain.png" />
 </p>
 
-## Redefining the Game
+## Tweaking the system
 
 If the ELO system feels unbalanced, lopsided or unfair in general, we can modify the formulas for calculating the ratings.
 
@@ -148,10 +156,10 @@ $$
 We see that this is the generalized version of the expected outcome calculation. As mentioned, $S$ represents the ratings difference such that $E_U$ is magnified 10 times over $E_V$. This corresponds to the assumption of the level of playing at different rating levels. In particular, we are assuming player $U$ with $R_U$ ratings have the skills to win 9 out of 10 matches against against player $V$ with $R_U - S$. With $S=500$, for example, we think that Gold-ranked players should win 9 out of 10 matches against Bronze players.
 
 **Rating Updates**
-Regarding the generalized rating updates formula, we encounter another tune-able parameter $K$ and $B$:
+Regarding the generalized rating updates formula, we encounter other tune-able parameters $K$ and $B$:
 
 $$
-R'_U = R_U + B + K(O_U - E_U)
+R'_U = R_U + B \cdot O_U + K(O_U - E_U)
 $$
 $B$ serves as a baseline of number of point given, such that this ELO system is not a zero-sum game. $B$ should be very small, around $1/20$th of the starting ELO, to prevent it from affecting the general competitive landscape. On the other hand, $K$ basically decides the sensitivity of the ratings system. When $K$ is high, winners gain more points and losers lose more, and vice versa. There are more advanced schemes for setting $K$, mostly revolving around setting K higher when $R_U$ is higher. Nevertheless, we use a fixed $K$ for simplicity in our novel system.
 

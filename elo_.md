@@ -27,7 +27,7 @@ For multiple games <img src="https://latex.codecogs.com/gif.latex?i"/> played in
 <p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;text{new&#x5C;_rating}%20=%20&#x5C;lfloor&#x5C;text{old&#x5C;_rating}%20+%20&#x5C;sum_i%205&#x5C;times%20&#x5C;text{actual&#x5C;_outcome}_i%20&#x5C;&#x5C;+%2064%20&#x5C;times%20(&#x5C;sum_i&#x5C;text{actual&#x5C;_outcome}_i%20-%20&#x5C;sum_i&#x5C;text{expected&#x5C;_outcome}_i)&#x5C;rfloor,"/></p>  
   
   
-Player starts with ELO ratings of 1000 (Bronze). The different ranks are
+Players start with a rating of 1000 (Bronze) and can progress to higher ranks based on their ratings:
   
 - Bronze: 1000-1199
 - Silver: 1200-1399
@@ -36,17 +36,17 @@ Player starts with ELO ratings of 1000 (Bronze). The different ranks are
 - Platinum II: 1800-1999
 - Diamond: 2000+
   
-**After finishing your game**, calculate your new ratings and put it on the ranking board, which should be seen easily in Random Forest.
+**To update your ranking**, calculate your new rating after each game and add it to the ranking board, which should be easily visible in the Random Forest room.
   
-GLHF! You can read the text below to understand the ranking calculation in detail.
+Good luck, and have fun! For more information on the ranking calculation, read on.
   
 ##  Basics
   
   
-We use a numerical rating to represent the skill level of each player. The higher the rating, the better the player is assumed to be. When two players compete, their ratings are used to calculate the expected outcome of the game. The expected outcome is then compared to the actual outcome, and the ratings are adjusted accordingly.
+We use a numerical rating to represent the skill level of each player. The higher the rating, the better the player is assumed to be. When two players compete, their ratings are used to calculate the expected outcome of the game. The expected outcome is then compared to the actual outcome, and the ratings are adjusted accordingly. Each player starts with an initial rating of 1000.
   
 **Expected Outcome**
-Each player starts with an initial rating of 1000. Given a player and a opponent, to calculate new ratings after a game, we first need to calculate the expected outcome of the game:
+Given a player and a opponent, to calculate new ratings after a game, we first need to calculate the expected outcome of the game:
   
 <p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;text{expected&#x5C;_outcome}%20=%20&#x5C;frac{1}{1%20+%2010^{(&#x5C;text{opponent&#x5C;_rating}%20-%20&#x5C;text{player&#x5C;_rating})%20&#x2F;%20400}}"/></p>  
   
@@ -90,10 +90,18 @@ Suppose two players, Bro and Ilon with ratings <img src="https://latex.codecogs.
 <p align="center"><img src="https://latex.codecogs.com/gif.latex?E_{&#x5C;text{Bro}}%20=%20&#x5C;frac{1}{1%20+%2010^{(1150%20-%201200)&#x2F;400}}%20&#x5C;approx%200.5714,%20&#x5C;&#x5C;E_{&#x5C;text{Ilon}}%20=%20&#x5C;frac{1}{1%20+%2010^{(1200%20-%201150)&#x2F;400}}%20&#x5C;approx%200.4285."/></p>  
   
   
+  
 Given these quantities, we can finally calculate the new ratings, <img src="https://latex.codecogs.com/gif.latex?R&#x27;_{&#x5C;text{Bro}}"/> and <img src="https://latex.codecogs.com/gif.latex?R&#x27;_{&#x5C;text{Ilon}}"/>, using the expected outcomes and actual outcomes vectors for the two players as
   
 <p align="center"><img src="https://latex.codecogs.com/gif.latex?R&#x27;_{&#x5C;text{Bro}}%20=%201200%20+%205%20&#x5C;times%20(1%20+%200%20+%201%20+%201%20+%200)%20&#x5C;&#x5C;%20+%2064&#x5C;times%20&#x5C;left((1%20+%200%20+%201%20+%201%20+%200)%20-%205&#x5C;times%200.5714%20&#x5C;right)%20=%201224,&#x5C;&#x5C;R&#x27;_{&#x5C;text{Bro}}%20=%201150%20+%205%20&#x5C;times%20(0%20+%201%20+%200%20+%200%20+%201)%20&#x5C;&#x5C;%20+%2064&#x5C;times%20&#x5C;left((0%20+%201%20+%200%20+%200%20+%201)%20-%205&#x5C;times%200.4285%20&#x5C;right)%20=%20%201150."/></p>  
   
+  
+Based on their new ratings, Bro is now in the Silver rank (1200-1399), while Ilon remains in the Bronze rank (1000-1199). In summary,
+  
+| Player | Old Rating | Games Played | Actual Outcome  | Expected Outcome               | Rating Change | New Rating |
+|--------|------------|--------------|-----------------|--------------------------------|---------------|------------|
+| Bro    | 1200       | 5            | [1, 0, 1, 1, 0] | [0.5714, 0.5714, 0.5714, 0.5714, 0.5714] | +24           | 1224       |
+| Ilon   | 1150       | 5            | [0, 1, 0, 0, 1] | [0.4285, 0.4285, 0.4285, 0.4285, 0.4285] | +0           | 1150       |
   
 ##  Analysis
   
@@ -129,7 +137,7 @@ How do the rating gains for U differ for different <img src="https://latex.codec
   <img src="assets/rating_gain.png" />
 </p>
   
-##  Redefining the Game
+##  Tweaking the system
   
   
 If the ELO system feels unbalanced, lopsided or unfair in general, we can modify the formulas for calculating the ratings.
@@ -143,9 +151,9 @@ Let us revisit the expected outcome formula and replace <img src="https://latex.
 We see that this is the generalized version of the expected outcome calculation. As mentioned, <img src="https://latex.codecogs.com/gif.latex?S"/> represents the ratings difference such that <img src="https://latex.codecogs.com/gif.latex?E_U"/> is magnified 10 times over <img src="https://latex.codecogs.com/gif.latex?E_V"/>. This corresponds to the assumption of the level of playing at different rating levels. In particular, we are assuming player <img src="https://latex.codecogs.com/gif.latex?U"/> with <img src="https://latex.codecogs.com/gif.latex?R_U"/> ratings have the skills to win 9 out of 10 matches against against player <img src="https://latex.codecogs.com/gif.latex?V"/> with <img src="https://latex.codecogs.com/gif.latex?R_U%20-%20S"/>. With <img src="https://latex.codecogs.com/gif.latex?S=500"/>, for example, we think that Gold-ranked players should win 9 out of 10 matches against Bronze players.
   
 **Rating Updates**
-Regarding the generalized rating updates formula, we encounter another tune-able parameter <img src="https://latex.codecogs.com/gif.latex?K"/> and <img src="https://latex.codecogs.com/gif.latex?B"/>:
+Regarding the generalized rating updates formula, we encounter other tune-able parameters <img src="https://latex.codecogs.com/gif.latex?K"/> and <img src="https://latex.codecogs.com/gif.latex?B"/>:
   
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?R&#x27;_U%20=%20R_U%20+%20B%20+%20K(O_U%20-%20E_U)"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?R&#x27;_U%20=%20R_U%20+%20B%20&#x5C;cdot%20O_U%20+%20K(O_U%20-%20E_U)"/></p>  
   
 <img src="https://latex.codecogs.com/gif.latex?B"/> serves as a baseline of number of point given, such that this ELO system is not a zero-sum game. <img src="https://latex.codecogs.com/gif.latex?B"/> should be very small, around <img src="https://latex.codecogs.com/gif.latex?1&#x2F;20"/>th of the starting ELO, to prevent it from affecting the general competitive landscape. On the other hand, <img src="https://latex.codecogs.com/gif.latex?K"/> basically decides the sensitivity of the ratings system. When <img src="https://latex.codecogs.com/gif.latex?K"/> is high, winners gain more points and losers lose more, and vice versa. There are more advanced schemes for setting <img src="https://latex.codecogs.com/gif.latex?K"/>, mostly revolving around setting K higher when <img src="https://latex.codecogs.com/gif.latex?R_U"/> is higher. Nevertheless, we use a fixed <img src="https://latex.codecogs.com/gif.latex?K"/> for simplicity in our novel system.
   
