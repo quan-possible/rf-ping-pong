@@ -134,6 +134,6 @@ $$
 R'_U = R_U + B + K(O_U - E_U)
 $$
 
-$K$ basically decides the sensitivity of the ratings system. When $K$ is high, winners gain more points and losers lose more, and vice versa. On the other hand, $B$ serves as a baseline of number of point given, so this ELO system is not a zero-sum game.
+$K$ basically decides the sensitivity of the ratings system. When $K$ is high, winners gain more points and losers lose more, and vice versa. On the other hand, $B$ serves as a baseline of number of point given, so this ELO system is not a zero-sum game. $B$ should be very small, around $1/20$th of the starting ELO, to prevent it from affecting the general competitive landscape.
 
 [^1]: One can notice that this is the [logistic function](https://en.wikipedia.org/wiki/Logistic_function) with base 10, $L=1$, $k=1/400$, and $x_0 = \text{opponent\_rating}$.
