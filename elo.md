@@ -13,7 +13,7 @@ $$\text{new\_rating} = \lfloor\text{old\_rating} + 32 \times (\text{actual\_outc
 where
 
 $$
-\text{actual_score} = \begin{cases}
+\text{actual\_score} = \begin{cases}
   1 & \text{if you win,} \\
   0 & \text{if you lose.}
 \end{cases}
