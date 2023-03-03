@@ -81,7 +81,7 @@ Denote <img src="https://latex.codecogs.com/gif.latex?R"/>, <img src="https://la
 The value of <img src="https://latex.codecogs.com/gif.latex?E_A%20&#x5C;in%20(0,1)"/> shows how likely the player A wins against the opponent B. For example, if the ratings of both the player and the opponent are 1000, the expected outcome is <img src="https://latex.codecogs.com/gif.latex?0.5"/>. On the other hand, suppose player has a ratings of 1200, and the opponent has a ratings of 1000. The expected outcome is <img src="https://latex.codecogs.com/gif.latex?&#x5C;approx%200.72"/>. The interpretation is we assume that either the player and the opponent win 50% of the time in the previous case, while the player and the opponent are expected to win 72% and 28% of the time, respectively, in the latter case. In fact, we can see how the expected outcome changes, when we fix <img src="https://latex.codecogs.com/gif.latex?&#x5C;text{opponent&#x5C;_rating}%20=%201000"/> and vary <img src="https://latex.codecogs.com/gif.latex?&#x5C;text{player&#x5C;_rating}"/> in this figure:
   
 <p align="center">
-  <img src="fig/elo.png" />
+  <img src="assets/elo.png" />
 </p>
   
   
