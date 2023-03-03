@@ -80,12 +80,11 @@ To provide a better sense of progression and achievement, we can associate diffe
 4. Go for another game (if you don't have anything else to do)!
 
 **Example**
-
 Suppose two players, Bro and Ilon with ratings $1200$ and $1150$, respectively, play a series of 5 games on a normal day at Random Forest. The winner of the games in chronological order are Bro, Ilon, Bro, Bro, and Ilon. We see that the actual outcome vector w.r.t. Bro is $O_{\text{Bro}} = [1,0,1,1,0]$ and Ilon is $O_{\text{Ilon}} = [0,1,0,0,1]$. To calculate the new ratings $R'_{\text{Bro}}, R'_{\text{Ilon}}$ for Bro and Ilon, we first calculate their expected outcome as
 
 $$
 E_{\text{Bro}} = \frac{1}{1 + 10^{(1150 - 1200)/400}} \approx 0.5714, \\
-E_{\text{Ilon}} = \frac{1}{1 + 10^{(1200 - 1150)/400}} \approx 0.4285. 
+E_{\text{Ilon}} = \frac{1}{1 + 10^{(1200 - 1150)/400}} \approx 0.4285.
 $$
 
 Given these quantities, we can finally calculate the new ratings, $R'_{\text{Bro}}$ and $R'_{\text{Ilon}}$, using the expected outcomes and actual outcomes vectors for the two players as

@@ -85,7 +85,6 @@ To provide a better sense of progression and achievement, we can associate diffe
 4. Go for another game (if you don't have anything else to do)!
   
 **Example**
-  
 Suppose two players, Bro and Ilon with ratings <img src="https://latex.codecogs.com/gif.latex?1200"/> and <img src="https://latex.codecogs.com/gif.latex?1150"/>, respectively, play a series of 5 games on a normal day at Random Forest. The winner of the games in chronological order are Bro, Ilon, Bro, Bro, and Ilon. We see that the actual outcome vector w.r.t. Bro is <img src="https://latex.codecogs.com/gif.latex?O_{&#x5C;text{Bro}}%20=%20[1,0,1,1,0]"/> and Ilon is <img src="https://latex.codecogs.com/gif.latex?O_{&#x5C;text{Ilon}}%20=%20[0,1,0,0,1]"/>. To calculate the new ratings <img src="https://latex.codecogs.com/gif.latex?R&#x27;_{&#x5C;text{Bro}},%20R&#x27;_{&#x5C;text{Ilon}}"/> for Bro and Ilon, we first calculate their expected outcome as
   
 <p align="center"><img src="https://latex.codecogs.com/gif.latex?E_{&#x5C;text{Bro}}%20=%20&#x5C;frac{1}{1%20+%2010^{(1150%20-%201200)&#x2F;400}}%20&#x5C;approx%200.5714,%20&#x5C;&#x5C;E_{&#x5C;text{Ilon}}%20=%20&#x5C;frac{1}{1%20+%2010^{(1200%20-%201150)&#x2F;400}}%20&#x5C;approx%200.4285."/></p>  
