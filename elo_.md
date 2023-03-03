@@ -19,7 +19,7 @@ Then, we can update your score based on the outcome as
   
 where
   
-<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;text{actual&#x5C;_score}%20=%20&#x5C;begin{cases}%20%201%20&amp;%20&#x5C;text{if%20you%20win,}%20&#x5C;&#x5C;%20%200%20&amp;%20&#x5C;text{if%20you%20lose.}&#x5C;end{cases}"/></p>  
+<p align="center"><img src="https://latex.codecogs.com/gif.latex?&#x5C;text{actual&#x5C;_outcome}%20=%20&#x5C;begin{cases}%20%201%20&amp;%20&#x5C;text{if%20you%20win,}%20&#x5C;&#x5C;%20%200%20&amp;%20&#x5C;text{if%20you%20lose.}&#x5C;end{cases}"/></p>  
   
   
 For multiple games <img src="https://latex.codecogs.com/gif.latex?i"/> played in a row, <img src="https://latex.codecogs.com/gif.latex?&#x5C;text{actual&#x5C;_outcome}"/> is a binary vector, and

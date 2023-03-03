@@ -16,7 +16,7 @@ $$\text{new\_rating} \\= \lfloor\text{old\_rating} + 5 \times \text{actual\_outc
 where
 
 $$
-\text{actual\_score} = \begin{cases}
+\text{actual\_outcome} = \begin{cases}
   1 & \text{if you win,} \\
   0 & \text{if you lose.}
 \end{cases}
